@@ -29,3 +29,9 @@ model Cliente {
   endereco  String?
   criadoEm  DateTime @default(now())
 }
+
+model Categoria {
+  id    Int    @id @default(autoincrement())
+  nome  String @unique
+}
+

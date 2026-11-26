@@ -22,6 +22,7 @@ class AuthController {
       const dados = await authService.login(email, senha);
       return res.status(200).json(dados);
     } catch (error) {
+      console.log("ERRO NO LOGIN:", error); // <-- ADICIONE ESTA LINHA
       if (error.message === 'Credenciais inválidas') return res.status(401).json({ error: error.message });
       return res.status(500).json({ error: 'Erro interno' });
     }

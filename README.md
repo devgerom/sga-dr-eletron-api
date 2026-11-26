@@ -22,6 +22,39 @@ API REST para o sistema de gestão da assistência técnica Dr. Eletron Refriger
 ## 🚀 Instalação e Execução
 
 1.  Clone o repositório:
-    ```bash
     git clone [link-do-seu-repositorio]
     cd sga-backend
+
+2.  Instale as dependências:
+    npm install
+
+3.  Crie o arquivo .env a partir do exemplo:
+    cp .env.example .env
+    (Edite o .env se necessário, mas as configurações padrão para SQLite já funcionam).
+
+4.  Rode as migrações do banco de dados:
+    npx prisma migrate dev
+
+5.  Inicie o servidor:
+    npm run dev
+    A API estará rodando em http://localhost:3000.
+
+## 🛣 Rotas da API
+
+A documentação completa das rotas e exemplos de requisição está no arquivo JSON localizado em: docs/primeiro.test.backend.json.
+
+| Método | Rota | Descrição | Requer Token? |
+| :--- | :--- | :--- | :--- |
+| POST | /auth/register | Cadastro de usuário | Não |
+| POST | /auth/login | Login e geração de JWT | Não |
+| POST | /auth/forgot-password | Solicita token de recuperação | Não |
+| POST | /auth/reset-password | Redefine a senha com token | Não |
+| GET | /perfil | Exemplo de rota protegida | Sim |
+
+## 🧪 Roteiro de Testes para o Tutor
+
+1.  Importe o arquivo docs/primeiro.test.backend.json no Insomnia ou Postman.
+2.  Execute a rota POST /auth/register para criar um usuário (ex: teste@teste.com / 123456).
+3.  Execute a rota POST /auth/login e copie o token retornado.
+4.  Nas rotas protegidas, adicione o token no Header Authorization: Bearer <SEU_TOKEN>.
+5.  Para testar a recuperação de senha: execute POST /auth/forgot-password com o e-mail cadastrado e verifique o terminal onde a API está rodando para encontrar o token de recuperação.
