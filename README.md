@@ -6,7 +6,7 @@ API REST para o sistema de gestão da assistência técnica Dr. Eletron Refriger
 
 ## 👥 Integrantes e Responsabilidades
 
-*   **Gerónimo Martín Campanello** - CRUD de Categoria (Em desenvolvimento)
+*   **Gerónimo Martín Campanello** - CRUD de Categoria
 *   **Eliseu Tavares Lima** - CRUD de Cliente
 *   **Fernando Silva Macedo** - CRUD de Ordem de Serviço
 
@@ -22,7 +22,7 @@ API REST para o sistema de gestão da assistência técnica Dr. Eletron Refriger
 ## 🚀 Instalação e Execução
 
 1.  Clone o repositório:
-    git clone [link-do-seu-repositorio]
+    git clone https://github.com/devgerom/sga-dr-eletron-api.git
     cd sga-backend
 
 2.  Instale as dependências:
@@ -41,7 +41,7 @@ API REST para o sistema de gestão da assistência técnica Dr. Eletron Refriger
 
 ## 🛣 Rotas da API
 
-A documentação completa das rotas e exemplos de requisição está no arquivo JSON localizado em: docs/primeiro.test.backend.json.
+A documentação completa das rotas e exemplos de requisição está no arquivo JSON localizado em: docs/test-CRUD-categoria.json.
 
 | Método | Rota | Descrição | Requer Token? |
 | :--- | :--- | :--- | :--- |
@@ -50,11 +50,17 @@ A documentação completa das rotas e exemplos de requisição está no arquivo 
 | POST | /auth/forgot-password | Solicita token de recuperação | Não |
 | POST | /auth/reset-password | Redefine a senha com token | Não |
 | GET | /perfil | Exemplo de rota protegida | Sim |
+| POST | /categorias | Cria uma nova categoria | Sim |
+| GET | /categorias | Lista todas as categorias | Sim |
+| GET | /categorias/:id | Busca categoria por ID | Sim |
+| PUT | /categorias/:id | Atualiza categoria por ID | Sim |
+| DELETE | /categorias/:id | Exclui categoria por ID | Sim |
 
 ## 🧪 Roteiro de Testes para o Tutor
 
-1.  Importe o arquivo docs/primeiro.test.backend.json no Insomnia ou Postman.
+1.  Importe o arquivo docs/test-CRUD-categoria.json no Insomnia ou Postman.
 2.  Execute a rota POST /auth/register para criar um usuário (ex: teste@teste.com / 123456).
 3.  Execute a rota POST /auth/login e copie o token retornado.
 4.  Nas rotas protegidas, adicione o token no Header Authorization: Bearer <SEU_TOKEN>.
 5.  Para testar a recuperação de senha: execute POST /auth/forgot-password com o e-mail cadastrado e verifique o terminal onde a API está rodando para encontrar o token de recuperação.
+6.  **Teste do CRUD de Categoria (Gerónimo):** Com o token configurado, execute POST /categorias com o body `{"nome": "Veículo"}`. Em seguida, teste o GET, GET /:id, PUT e DELETE nas rotas de categorias.
