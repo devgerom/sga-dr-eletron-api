@@ -1,11 +1,23 @@
 {
   "info": {
     "name": "SGA - Dr. Eletron",
-    "description": "Coleção de testes da API do projeto integrador"
+    "description": "Coleção de testes da API do projeto integrador (Auth + CRUD de Categoria)"
   },
   "item": [
     {
-      "name": "Login",
+      "name": "1. Auth - Cadastro de Usuário",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "http://localhost:3000/auth/register",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nome\": \"Gerónimo\",\n  \"email\": \"geronimo@teste.com\",\n  \"senha\": \"123456\"\n}"
+        }
+      }
+    },
+    {
+      "name": "2. Auth - Login",
       "request": {
         "method": "POST",
         "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -17,7 +29,31 @@
       }
     },
     {
-      "name": "Criar Categoria",
+      "name": "3. Auth - Esqueci a Senha",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "http://localhost:3000/auth/forgot-password",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"geronimo@teste.com\"\n}"
+        }
+      }
+    },
+    {
+      "name": "4. Auth - Redefinir Senha",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "http://localhost:3000/auth/reset-password",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"token\": \"COLE_O_TOKEN_AQUI\",\n  \"novaSenha\": \"654321\"\n}"
+        }
+      }
+    },
+    {
+      "name": "5. Categoria - Criar",
       "request": {
         "method": "POST",
         "header": [
@@ -32,7 +68,7 @@
       }
     },
     {
-      "name": "Listar Categorias",
+      "name": "6. Categoria - Listar Todas",
       "request": {
         "method": "GET",
         "header": [{ "key": "Authorization", "value": "Bearer SEU_TOKEN_AQUI" }],
@@ -40,7 +76,15 @@
       }
     },
     {
-      "name": "Atualizar Categoria",
+      "name": "7. Categoria - Buscar por ID",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer SEU_TOKEN_AQUI" }],
+        "url": "http://localhost:3000/categorias/1"
+      }
+    },
+    {
+      "name": "8. Categoria - Atualizar",
       "request": {
         "method": "PUT",
         "header": [
@@ -55,7 +99,7 @@
       }
     },
     {
-      "name": "Excluir Categoria",
+      "name": "9. Categoria - Excluir",
       "request": {
         "method": "DELETE",
         "header": [{ "key": "Authorization", "value": "Bearer SEU_TOKEN_AQUI" }],

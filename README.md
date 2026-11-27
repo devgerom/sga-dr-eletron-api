@@ -64,3 +64,5 @@ A documentação completa das rotas e exemplos de requisição está no arquivo 
 4.  Nas rotas protegidas, adicione o token no Header Authorization: Bearer <SEU_TOKEN>.
 5.  Para testar a recuperação de senha: execute POST /auth/forgot-password com o e-mail cadastrado e verifique o terminal onde a API está rodando para encontrar o token de recuperação.
 6.  **Teste do CRUD de Categoria (Gerónimo):** Com o token configurado, execute POST /categorias com o body `{"nome": "Veículo"}`. Em seguida, teste o GET, GET /:id, PUT e DELETE nas rotas de categorias.
+
+Nota: Para testar as rotas protegidas de Categoria, copie o token gerado no Login e substitua o texto SEU_TOKEN_AQUI no Header Authorization: Bearer de cada requisição.
