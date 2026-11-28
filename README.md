@@ -23,7 +23,7 @@ API REST para o sistema de gestão da assistência técnica Dr. Eletron Refriger
 
 1.  Clone o repositório:
     git clone https://github.com/devgerom/sga-dr-eletron-api.git
-    cd sga-backend
+    cd sga-dr-eletron-api
 
 2.  Instale as dependências:
     npm install
@@ -41,7 +41,9 @@ API REST para o sistema de gestão da assistência técnica Dr. Eletron Refriger
 
 ## 🛣 Rotas da API
 
-A documentação completa das rotas e exemplos de requisição está no arquivo JSON localizado em: docs/test-CRUD-categoria.json.
+A documentação completa das rotas e exemplos de requisição está no arquivo JSON localizado em: docs/test-CRUD-categoria.json e docs/test-CRUD-ordem-servico.json
+
+### CRUD de Categoria
 
 | Método | Rota | Descrição | Requer Token? |
 | :--- | :--- | :--- | :--- |
@@ -56,7 +58,17 @@ A documentação completa das rotas e exemplos de requisição está no arquivo 
 | PUT | /categorias/:id | Atualiza categoria por ID | Sim |
 | DELETE | /categorias/:id | Exclui categoria por ID | Sim |
 
+### CRUD de Ordem de Serviço
+
+| POST | /ordens-servico | Cria uma ordem de serviço | Sim |
+| GET | /ordens-servico | Lista todas as ordens de serviço | Sim |
+| GET | /ordens-servico/:id | Busca ordem de serviço por ID | Sim |
+| PUT | /ordens-servico/:id | Atualiza ordem de serviço | Sim |
+| DELETE | /ordens-servico/:id | Exclui ordem de serviço | Sim |
+
 ## 🧪 Roteiro de Testes para o Tutor
+
+### CRUD de Categoria
 
 1.  Importe o arquivo docs/test-CRUD-categoria.json no Insomnia ou Postman.
 2.  Execute a rota POST /auth/register para criar um usuário (ex: teste@teste.com / 123456).
@@ -65,4 +77,24 @@ A documentação completa das rotas e exemplos de requisição está no arquivo 
 5.  Para testar a recuperação de senha: execute POST /auth/forgot-password com o e-mail cadastrado e verifique o terminal onde a API está rodando para encontrar o token de recuperação.
 6.  **Teste do CRUD de Categoria (Gerónimo):** Com o token configurado, execute POST /categorias com o body `{"nome": "Veículo"}`. Em seguida, teste o GET, GET /:id, PUT e DELETE nas rotas de categorias.
 
-Nota: Para testar as rotas protegidas de Categoria, copie o token gerado no Login e substitua o texto SEU_TOKEN_AQUI no Header Authorization: Bearer de cada requisição.
+### CRUD de Ordem de Serviço
+
+
+1. Importe o arquivo `docs/test-CRUD-ordem-servico.json` no Insomnia ou Postman.
+2. Execute a rota `POST /auth/register` para criar um usuário (caso ainda não esteja cadastrado). Exemplo:
+      - **E-mail:** `teste@teste.com`
+      - **Senha:** `123456`
+      Se já tiver cadastrado, usa uma variação como `teste2@teste.com`
+3. Execute a rota `POST /auth/login` utilizando o e-mail e a senha acima e copie o token retornado.
+4. Nas rotas protegidas, adicione o token no Header `Authorization: Bearer <SEU_TOKEN>`.
+5. Execute o POST para criar uma ordem de serviço.
+6. Teste o GET para listar todas as ordens de serviço.
+7. Teste o GET por ID.
+8. Teste o PUT para atualizar a ordem de serviço.
+9. Teste o DELETE para excluir a ordem de serviço.
+
+**Nota 1:** As instruções para recuperação e redefinição de senha já estão descritas anteriormente neste README, no roteiro geral de testes.
+
+**Nota 2:** É necessário possuir um cliente cadastrado no banco de dados para realizar o teste do CRUD de Ordem de Serviço.
+
+**Nota 3:** Para testar as rotas protegidas de Categoria e Ordem de Serviço, copie o token gerado no Login e substitua o texto `SEU_TOKEN_AQUI` no Header `Authorization: Bearer` de cada requisição.
