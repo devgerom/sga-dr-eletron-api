@@ -2,9 +2,10 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const authRoutes = require('./routes/authRoutes');
-const categoriaRoutes = require('./routes/categoriaRoutes'); 
+const categoriaRoutes = require('./routes/categoriaRoutes');
+const ordemServicoRoutes = require('./routes/ordemServicoRoutes');
 
-const app = express(); 
+const app = express();
 app.use(cors());
 app.use(express.json());
 
@@ -13,6 +14,9 @@ app.use('/auth', authRoutes);
 
 // Rotas de Categoria (Protegidas)
 app.use('/categorias', categoriaRoutes);
+
+// Rotas de Ordem de Serviço (Protegidas)
+app.use('/ordens-servico', ordemServicoRoutes);
 
 // Rota de teste (Pública)
 app.get('/', (req, res) => res.json({ message: 'API SGA - Dr. Eletron rodando!' }));

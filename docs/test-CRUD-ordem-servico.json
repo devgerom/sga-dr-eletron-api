@@ -1,0 +1,158 @@
+{
+  "info": {
+    "name": "SGA - Dr Eletron | Auth + CRUD OS",
+    "description": "Coleção de testes da API do projeto integrador (Auth + CRUD de Ordem de Serviço). Usuário de teste sugerido: teste@teste.com / 1234.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Auth - Cadastro",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nome\": \"Usuario Teste\",\n  \"email\": \"teste@teste.com\",\n  \"senha\": \"1234\"\n}"
+        },
+        "url": "http://localhost:3000/auth/register"
+      }
+    },
+    {
+      "name": "2. Auth - Login",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"teste@teste.com\",\n  \"senha\": \"1234\"\n}"
+        },
+        "url": "http://localhost:3000/auth/login"
+      }
+    },
+    {
+      "name": "3. Auth - Solicitar recuperação de senha",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"teste@teste.com\"\n}"
+        },
+        "url": "http://localhost:3000/auth/forgot-password"
+      }
+    },
+    {
+      "name": "4. Auth - Redefinir senha",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"token\": \"COLE_O_TOKEN_AQUI\",\n  \"novaSenha\": \"654321\"\n}"
+        },
+        "url": "http://localhost:3000/auth/reset-password"
+      }
+    },
+    {
+      "name": "5. OS - Criar",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer SEU_TOKEN_AQUI"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"numero\": 1003,\n  \"clienteId\": 1,\n  \"descricaoProblema\": \"Equipamento não liga\",\n  \"equipamento\": \"Notebook\"\n}"
+        },
+        "url": "http://localhost:3000/ordens-servico"
+      }
+    },
+    {
+      "name": "6. OS - Listar",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer SEU_TOKEN_AQUI"
+          }
+        ],
+        "url": "http://localhost:3000/ordens-servico"
+      }
+    },
+    {
+      "name": "7. OS - Consultar por ID",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer SEU_TOKEN_AQUI"
+          }
+        ],
+        "url": "http://localhost:3000/ordens-servico/ID_DA_OS"
+      }
+    },
+    {
+      "name": "8. OS - Atualizar",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer SEU_TOKEN_AQUI"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"numero\": 1003,\n  \"clienteId\": 1,\n  \"descricaoProblema\": \"Equipamento liga, mas não apresenta imagem\",\n  \"equipamento\": \"Notebook Dell\"\n}"
+        },
+        "url": "http://localhost:3000/ordens-servico/ID_DA_OS"
+      }
+    },
+    {
+      "name": "9. OS - Excluir",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer SEU_TOKEN_AQUI"
+          }
+        ],
+        "url": "http://localhost:3000/ordens-servico/ID_DA_OS"
+      }
+    }
+  ]
+}

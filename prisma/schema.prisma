@@ -15,19 +15,21 @@ model Usuario {
   nome                String
   email               String    @unique
   senha               String
-  resetToken          String?
-  resetTokenExpiresAt DateTime?
-  criadoEm            DateTime  @default(now())
+  resetToken           String?
+  resetTokenExpiresAt  DateTime?
+  criadoEm             DateTime  @default(now())
 }
 
 model Cliente {
   id        Int      @id @default(autoincrement())
-  tipo      String   // "PF" ou "PJ"
+  tipo      String
   nome      String
-  documento String   @unique
-  telefone  String
-  endereco  String?
-  criadoEm  DateTime @default(now())
+  documento  String   @unique
+  telefone   String
+  endereco   String?
+  criadoEm   DateTime @default(now())
+
+  ordensServico OrdemServico[]
 }
 
 model Categoria {
@@ -35,3 +37,15 @@ model Categoria {
   nome  String @unique
 }
 
+model OrdemServico {
+  id                Int      @id @default(autoincrement())
+  numero            Int      @unique
+  clienteId         Int      @map("cliente_id")
+  descricaoProblema  String   @map("descricao_problema")
+  equipamento       String
+  dataAbertura      DateTime @default(now()) @map("data_abertura")
+
+  cliente Cliente @relation(fields: [clienteId], references: [id])
+
+  @@map("ordem_servico")
+}
